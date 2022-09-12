@@ -14,13 +14,24 @@ function validateInput(e){
     let height = heightInput.value
     let weight = weightInput.value
 
+    // display reset button
+    reset.style.display = "block";
+    result.style.display = "block";
     // validate form
     if (height=== ""){
        return result.textContent ="please enter a valid height!"
     } else if (weight=== ""){
         return result.textContent ="please enter a valid weight!"  
     } else {
-        calculateBMI(height,weight);
+
+        result.innerHTML = `
+            <div class= "loader-div">
+                <img class="loader" src="./images/loader.gif" alt="Loading..."
+            </div>
+        `;
+        setTimeout(()=> {
+            calculateBMI(height,weight);
+        }, 1000)
         
     }
 }
@@ -50,4 +61,8 @@ function showResult(val,color){
     return result.innerHTML = val
 
 }
-
+reset.addEventListener("click", ()=> {
+    form.reset();
+    result.style.display = "none"
+    reset.style.display = "none"
+})
