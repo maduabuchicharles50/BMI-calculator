@@ -34,7 +34,20 @@ function calculateBMI(height,weight){
     console.log(bmi);
     // categorize results
     if (bmi<18.5){
-        result.innerHTML=bmi;
+        showResult(`underweight: <span>${bmi}  </span>`, "orange")
+    } else if (bmi >= 18.5 && bmi< 24.9){
+        showResult(`Normal: <span>${bmi}  </span>`, "green")
+    } else if (bmi >=25.0 && bmi< 29.9){
+        showResult(`Overweight: <span>${bmi}  </span>`, "purple")
+    } else {
+        showResult(`Obese: <span>${bmi}  </span>`, "red")
     }
+}
+
+// show result
+function showResult(val,color){
+    result.style.backgroundColor = color;
+    return result.innerHTML = val
+
 }
 
